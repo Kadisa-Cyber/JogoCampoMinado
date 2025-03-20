@@ -21,10 +21,9 @@
 #include <cstdlib>
 #include <string>
 
-
 int main() {
 
-	int numeroLinha=0,numeroColuna=0, jogadaX=0, jogadaY=0;
+	int numeroLinha=0,numeroColuna=0, jogadaY=0, jogadaX=0;
 
 
 	std::string matrizJogada[10][10];
@@ -44,8 +43,6 @@ int main() {
 			matrizComBombas[i][j] = "- ";
 		}
 	}
-
-
 
 	std::cout << "" << std::endl;
 
@@ -67,10 +64,6 @@ int main() {
 			bombas++;
 		}
 	}
-
-
-
-
 
 	while(jogouBomba==false) {
 
@@ -98,55 +91,54 @@ int main() {
 
 		std::cout << "" << std::endl;
 		
-
-
 		std::cout << "Digite a posicao Y da sua jogada (de 0 a 9)" << std::endl;
-		std::cin >> jogadaX;
-
-		std::cout << "Digite a posicao X da sua jogada (de 0 a 9)" << std::endl;
 		std::cin >> jogadaY;
 
+		std::cout << "Digite a posicao X da sua jogada (de 0 a 9)" << std::endl;
+		std::cin >> jogadaX;
 
 		int bombasPerto=0;
 
-		if(matrizComBombas[jogadaX][jogadaY]=="O ") {
+		if(matrizComBombas[jogadaY][jogadaX]=="O ") {
 			std::cout << "Voce clicou na bomba" << std::endl;
 			jogouBomba=true;
 		} else {
-			if(matrizComBombas[jogadaX-1][jogadaY-1]=="O ") {
+			if(jogadaX>0&& jogadaX<9&&jogadaY>0&&jogadaY<9) {
+			if(matrizComBombas[jogadaY-1][jogadaX-1]=="O ") {
 				bombasPerto++;
 			}
-			if(matrizComBombas[jogadaX-1][jogadaY]=="O ") {
+			if(matrizComBombas[jogadaY-1][jogadaX]=="O ") {
 				bombasPerto++;
 			}
-			if(matrizComBombas[jogadaX-1][jogadaY+1]=="O ") {
+			if(matrizComBombas[jogadaY-1][jogadaX+1]=="O ") {
 				bombasPerto++;
 			}
-			if(matrizComBombas[jogadaX][jogadaY-1]=="O ") {
+			if(matrizComBombas[jogadaY][jogadaX-1]=="O ") {
 				bombasPerto++;
 			}
-			if(matrizComBombas[jogadaX][jogadaY+1]=="O ") {
+			if(matrizComBombas[jogadaY][jogadaX+1]=="O ") {
 				bombasPerto++;
 			}
-			if(matrizComBombas[jogadaX+1][jogadaY-1]=="O ") {
+			if(matrizComBombas[jogadaY+1][jogadaX-1]=="O ") {
 				bombasPerto++;
 			}
-			if(matrizComBombas[jogadaX+1][jogadaY]=="O ") {
+			if(matrizComBombas[jogadaY+1][jogadaX]=="O ") {
 				bombasPerto++;
 			}
-			if(matrizComBombas[jogadaX+1][jogadaY+1]=="O ") {
+			if(matrizComBombas[jogadaY+1][jogadaX+1]=="O ") {
 				bombasPerto++;
 			}
 
-			if(matrizJogada[jogadaX][jogadaY]=="- ") {
+			if(matrizJogada[jogadaY][jogadaX]=="- ") {
 				jogadas++;
+			}
 			}
 
 		}
 
 		std::string bombasPertoString = std::to_string(bombasPerto) + " ";
 
-		matrizJogada[jogadaX][jogadaY]=bombasPertoString;
+		matrizJogada[jogadaY][jogadaX]=bombasPertoString;
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
@@ -193,14 +185,9 @@ int main() {
 		
 		std::cout << "" << std::endl;
 		
-		std::cout << "Voce jogou Y: " << jogadaY << std::endl;
-		std::cout << "Voce jogou X: " << jogadaX << std::endl;
+		std::cout << "Voce jogou Y: " << jogadaX << std::endl;
+		std::cout << "Voce jogou X: " << jogadaY << std::endl;
 	}
-
-
-
-
-
 
 	return 0;
 }
